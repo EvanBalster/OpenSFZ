@@ -135,7 +135,12 @@ public:
 	char *getSummary()
 	{
 		char *summary = new char[250];
-		sprintf(summary, " Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
+#if _MSC_VER
+		sprintf_s(summary, 250,
+#else
+		sprintf(summary,
+#endif
+			" Format: %d\n Channels: %d\n SampleRate: %d\n ByteRate: %d\n BlockAlign: %d\n BitsPerSample: %d\n DataSize: %d\n", myFormat, myChannels, mySampleRate, myByteRate, myBlockAlign, myBitsPerSample, myDataSize);
 
 		return summary;
 	}

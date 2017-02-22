@@ -41,9 +41,10 @@ void RIFFChunk::SeekAfter(InputStream* file)
 
 std::string RIFFChunk::ReadString(InputStream* file)
 {
-	char str[size];
-	file->read(str, size);
-	return std::string(str);
+	std::string str;
+	str.resize(size);
+	file->read(&str[0], size);
+	return str;
 }
 
 

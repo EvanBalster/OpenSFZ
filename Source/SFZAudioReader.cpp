@@ -247,7 +247,8 @@ int32_t SFZAudioReader::parseSMPLChunk(ifstream &f, long dataLength)
     
     
     
-
+	// The original implementation had no return statement, this was added to fix a compile error...
+	return 0;
 }
 
 

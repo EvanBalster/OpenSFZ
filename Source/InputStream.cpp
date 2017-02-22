@@ -13,7 +13,11 @@ using namespace std;
 
 InputStream::InputStream(const string &path)
 {
+#if _MSC_VER
+	fopen_s(&pFile, path.c_str(), "rb");
+#else
     pFile = fopen ( path.c_str() , "rb" );
+#endif
     
     if(pFile)
     {
