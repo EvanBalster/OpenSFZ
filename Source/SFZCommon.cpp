@@ -15,6 +15,6 @@ float decibelsToGain(float db)
 
 float getMidiNoteInHertz(int noteNumber)
 {
-    noteNumber -= 12 * 6 + 9; // now 0 = A
+    noteNumber -= 69; // now 0 = A
     return 440.0f * pow (2.0, noteNumber / 12.0);
 }

@@ -14,7 +14,9 @@
 #include <stdio.h>
 
 #include "SFZAudioReader.h"
-#include "stb_vorbis.h"
+
+#define STB_VORBIS_HEADER_ONLY
+#include "stb_vorbis.c"
 
 #include <assert.h>
 
@@ -56,7 +58,8 @@ bool SFZAudioReader::readOgg() {
     
     int channelx;
     //    cout << fileName << endl;
-    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(myPath.c_str()), &channelx, &temp);
+	int sampleRate = 0;
+    myDataSize = stb_vorbis_decode_filename(const_cast<char*>(myPath.c_str()), &channelx, &sampleRate, &temp);
     result = myDataSize > 0;
     
     printf("\nchannels = %d\nlength = %d",channelx,myDataSize);
@@ -64,7 +67,7 @@ bool SFZAudioReader::readOgg() {
     
     myChannels=(short)channelx;
     length=myDataSize;
-    mySampleRate=44100;
+    mySampleRate = sampleRate;
     
     assert(myDataSize > 0);
     

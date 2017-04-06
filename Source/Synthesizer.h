@@ -15,6 +15,7 @@ class SynthesizerSound;
 class SynthesizerVoice {
 public:
     SynthesizerVoice();
+	virtual ~SynthesizerVoice() {}
     
     void setCurrentPlaybackSampleRate (double newRate);
     void clearCurrentNote();
